@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>数当てゲーム</title>
+        <style>
+            *{margin:-5px;padding: 0px;}
+            div{
+                background-color: yellow;
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                margin: 70px auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box1" onclick="btn1();">1</div>
+        <div id="box2" onclick="btn2();">2</div>
+        <div id="box3" onclick="btn1();">3</div>
+        <div id="box4" onclick="btn2();">4</div>
+        <div id="box5" onclick="btn1();">5</div>
+        <div id="box6" onclick="btn2();">6</div>
+        <div id="box7" onclick="btn1();">7</div>
+        <div id="box8" onclick="btn2();">8</div>
+        <div id="box9" onclick="btn1();">9</div>
+        <div id="box10" onclick="btn2();">10</div>
+        <div id="box11" onclick="btn1();">11</div>
+        <div id="box12" onclick="btn2();">12</div>    
+        <div id="box13" onclick="btn1();">13</div>
+        
+        <audio id="audio1" src="correct2.mp3"></audio>
+        <audio id="audio2" src="incorrect1.mp3"></audio>
+        <p　id="output1">1~13の数字を使って勝負!</p>
+        
+        <script>
+            let count=0;
+            let point=0;
+            let max=12;
+            let pc=Math.floor(Math.random()*max+1);
+            let player; 
+            let judge;
+            let strage = localStorage.getItem("point")
+            if(strage!==null){point=strage;}
+            let game = localStorage.getItem("count")
+            if(game!==null){count=game;}
+            const BOX1=document.getElementById("box1");
+            const BOX2=document.getElementById("box2");
+            const AUDIO1=document.getElementById("correct2.mp3");
+            const AUDIO2=document.getElementById("incorrect1.mp3");
+            const INPUT1=document.getElementById("input1")
+            const INPUT2=document.getElementById("input2")
+            const OUTPUT1=document.getElementById("output1");
+            
+            function btn1(){
+                if(player>pc){
+                    judge="勝ち";
+                    point++;
+                    AUDIO1.play();
+                }
+                if(pc>player){
+                    judge="負け";
+                    count++;
+                    AUDIO2.play();
+                }
+            }
+            
+            OUTPUT1.innerHTML="勝敗"+judge+"プレイヤー:"+player+"<p>"+"pc:"+pc+"</p>"+"<p>"+localStorage.setItem("point",point);+"勝"+localStorage.setItem("count",count);+"敗"+"</p>";
+        </script>
+    </body>
+</html>
